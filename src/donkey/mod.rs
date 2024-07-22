@@ -3,15 +3,14 @@ use {
         lua2cpp::*,
         phx::*,
         app::{sv_animcmd::*, lua_bind::*, *},
-        lib::lua_const::*,
-		hash40
+        lib::{lua_const::*, L2CValue, L2CAgent},
+        hash40
     },
     smash_script::*,
-    smashline::*
+    smashline::{*, Priority::*}
 };
 
-#[acmd_script( agent = "donkey", script = "game_attack11", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attack11(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attack11(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         macros::ATTACK(agent, 0, 0, Hash40::new("top"), 4.0, 361, 35, 0, 25, 9.0, 0.0, 11.5, 5.0, None, None, None, 1.5, 1.0, *ATTACK_SETOFF_KIND_ON, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_normal"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_PUNCH, *ATTACK_REGION_PUNCH);
@@ -26,8 +25,7 @@ unsafe fn donkey_game_attack11(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attack12", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attack12(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attack12(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 4.0);
     if macros::is_excute(agent) {
         macros::ATTACK(agent, 0, 0, Hash40::new("handr"), 8.0, 70, 100, 0, 40, 7.0, 0.0, 0.0, 0.0, Some(6.0), Some(0.0), Some(0.0), 1.8, 1.0, *ATTACK_SETOFF_KIND_ON, *ATTACK_LR_CHECK_F, false, 0, 0.0, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_normal"), *ATTACK_SOUND_LEVEL_L, *COLLISION_SOUND_ATTR_PUNCH, *ATTACK_REGION_PUNCH);
@@ -41,8 +39,7 @@ unsafe fn donkey_game_attack12(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacks3hi", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacks3hi(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacks3hi(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 1.0);
     macros::FT_MOTION_RATE(agent, 0.91);
     frame(agent.lua_state_agent, 6.0);
@@ -64,8 +61,7 @@ unsafe fn donkey_game_attacks3hi(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacks3lw", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacks3lw(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacks3lw(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 1.0);
     macros::FT_MOTION_RATE(agent, 0.91);
     frame(agent.lua_state_agent, 6.0);
@@ -87,8 +83,7 @@ unsafe fn donkey_game_attacks3lw(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacks3", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacks3(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacks3(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 1.0);
     macros::FT_MOTION_RATE(agent, 0.9);
     frame(agent.lua_state_agent, 6.0);
@@ -109,8 +104,7 @@ unsafe fn donkey_game_attacks3(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackhi3", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackhi3(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackhi3(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         macros::HIT_NODE(agent, Hash40::new("armr"), *HIT_STATUS_XLU);
@@ -132,8 +126,7 @@ unsafe fn donkey_game_attackhi3(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacklw3", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacklw3(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacklw3(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 4.0);
     if macros::is_excute(agent) {
         macros::HIT_NODE(agent, Hash40::new("arml"), *HIT_STATUS_XLU);
@@ -153,8 +146,7 @@ unsafe fn donkey_game_attacklw3(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacks4", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacks4(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacks4(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 15.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -180,8 +172,7 @@ unsafe fn donkey_game_attacks4(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackhi4", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackhi4(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackhi4(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 7.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -205,8 +196,7 @@ unsafe fn donkey_game_attackhi4(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attacklw4", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attacklw4(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attacklw4(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 3.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_FLAG_START_SMASH_HOLD);
@@ -239,8 +229,7 @@ unsafe fn donkey_game_attacklw4(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackairb", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackairb(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackairb(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 6.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
@@ -266,8 +255,7 @@ unsafe fn donkey_game_attackairb(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackairf", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackairf(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackairf(agent: &mut L2CAgentBase) {
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
     }
@@ -291,8 +279,7 @@ unsafe fn donkey_game_attackairf(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackairhi", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackairhi(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackairhi(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         macros::HIT_NODE(agent, Hash40::new("head"), *HIT_STATUS_XLU);
@@ -313,8 +300,7 @@ unsafe fn donkey_game_attackairhi(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackairlw", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackairlw(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackairlw(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 3.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
@@ -339,8 +325,7 @@ unsafe fn donkey_game_attackairlw(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_attackairn", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_attackairn(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_attackairn(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 10.0);
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING);
@@ -369,8 +354,7 @@ unsafe fn donkey_game_attackairn(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", scripts = [ "game_specialnmax", "game_specialairnmax" ], category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specialnmax(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specialnmax(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 9.0);
     execute(agent.lua_state_agent, 9.0);
     if macros::is_excute(agent) {
@@ -399,8 +383,7 @@ unsafe fn donkey_game_specialnmax(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_specials", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specials(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specials(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         damage!(agent, *MA_MSC_DAMAGE_DAMAGE_NO_REACTION, *DAMAGE_NO_REACTION_MODE_ALWAYS, 0);
@@ -422,8 +405,7 @@ unsafe fn donkey_game_specials(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_specialairs", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specialairs(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specialairs(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         damage!(agent, *MA_MSC_DAMAGE_DAMAGE_NO_REACTION, *DAMAGE_NO_REACTION_MODE_ALWAYS, 0);
@@ -444,8 +426,7 @@ unsafe fn donkey_game_specialairs(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_specialhi", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specialhi(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specialhi(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 5.0);
     if macros::is_excute(agent) {
         damage!(agent, *MA_MSC_DAMAGE_DAMAGE_NO_REACTION, *DAMAGE_NO_REACTION_MODE_ALWAYS, 0);
@@ -531,8 +512,7 @@ unsafe fn donkey_game_specialhi(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_specialairhi", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specialairhi(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specialairhi(agent: &mut L2CAgentBase) {
     if macros::is_excute(agent) {
         WorkModule::on_flag(agent.module_accessor, *FIGHTER_DONKEY_STATUS_SPECIAL_HI_FLAG_GROUND_MOT_FRAME);
     }
@@ -583,8 +563,7 @@ if macros::is_excute(agent) {
 macros::FT_MOTION_RATE(agent, 1.0);
 }
 
-#[acmd_script( agent = "donkey", script = "game_speciallwloop", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_speciallwloop(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_speciallwloop(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 1.0);
     macros::FT_MOTION_RATE(agent, 0.75);
     frame(agent.lua_state_agent, 5.0);
@@ -624,8 +603,7 @@ unsafe fn donkey_game_speciallwloop(agent: &mut L2CAgentBase) {
     }
 }
 
-#[acmd_script( agent = "donkey", script = "game_specialairlw", category = ACMD_GAME, low_priority )]
-unsafe fn donkey_game_specialairlw(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn donkey_game_specialairlw(agent: &mut L2CAgentBase) {
     frame(agent.lua_state_agent, 19.0);
     if macros::is_excute(agent) {
         macros::ATTACK(agent, 0, 0, Hash40::new("handr"), 5.0, 90, 100, 36, 0, 17.0, 8.0, 0.0, 2.0, None, None, None, 1.0, 1.0, *ATTACK_SETOFF_KIND_OFF, *ATTACK_LR_CHECK_POS, false, 0, 0.2, 0, false, false, false, false, true, *COLLISION_SITUATION_MASK_GA, *COLLISION_CATEGORY_MASK_ALL, *COLLISION_PART_MASK_ALL, false, Hash40::new("collision_attr_normal"), *ATTACK_SOUND_LEVEL_M, *COLLISION_SOUND_ATTR_PUNCH, *ATTACK_REGION_PUNCH);
@@ -645,28 +623,28 @@ unsafe fn donkey_game_specialairlw(agent: &mut L2CAgentBase) {
 }
 
 pub fn install() {
-    smashline::install_acmd_scripts!(
-        donkey_game_attack11,
-		donkey_game_attack12,
-		donkey_game_attackairb,
-		donkey_game_attackairf,
-		donkey_game_attackairhi,
-		donkey_game_attackairlw,
-		donkey_game_attackairn,
-		donkey_game_attackhi3,
-		donkey_game_attackhi4,
-		donkey_game_attacklw3,
-		donkey_game_attacklw4,
-		donkey_game_attacks3,
-		donkey_game_attacks3hi,
-		donkey_game_attacks3lw,
-		donkey_game_attacks4,
-		donkey_game_specialairhi,
-		donkey_game_specialairlw,
-		donkey_game_specialairs,
-		donkey_game_specialhi,
-		donkey_game_speciallwloop,
-		donkey_game_specialnmax,
-		donkey_game_specials,
-    );
+    Agent::new("donkey")
+        .game_acmd("game_attack11_expand", donkey_game_attack11, Default)
+        .game_acmd("game_attack12_expand", donkey_game_attack12, Default)
+        .game_acmd("game_attacks3hi_expand", donkey_game_attacks3hi, Default)
+        .game_acmd("game_attacks3lw_expand", donkey_game_attacks3lw, Default)
+        .game_acmd("game_attacks3_expand", donkey_game_attacks3, Default)
+        .game_acmd("game_attackhi3_expand", donkey_game_attackhi3, Default)
+        .game_acmd("game_attacklw3_expand", donkey_game_attacklw3, Default)
+        .game_acmd("game_attacks4_expand", donkey_game_attacks4, Default)
+        .game_acmd("game_attackhi4_expand", donkey_game_attackhi4, Default)
+        .game_acmd("game_attacklw4_expand", donkey_game_attacklw4, Default)
+        .game_acmd("game_attackairb_expand", donkey_game_attackairb, Default)
+        .game_acmd("game_attackairf_expand", donkey_game_attackairf, Default)
+        .game_acmd("game_attackairhi_expand", donkey_game_attackairhi, Default)
+        .game_acmd("game_attackairlw_expand", donkey_game_attackairlw, Default)
+        .game_acmd("game_attackairn_expand", donkey_game_attackairn, Default)
+        .game_acmd("game_specialnmax_expand", donkey_game_specialnmax, Default)
+        .game_acmd("game_specials_expand", donkey_game_specials, Default)
+        .game_acmd("game_specialairs_expand", donkey_game_specialairs, Default)
+        .game_acmd("game_specialhi_expand", donkey_game_specialhi, Default)
+        .game_acmd("game_specialairhi_expand", donkey_game_specialairhi, Default)
+        .game_acmd("game_speciallwloop_expand", donkey_game_speciallwloop, Default)
+        .game_acmd("game_specialairlw_expand", donkey_game_specialairlw, Default)
+        .install();
 }
